@@ -1,12 +1,23 @@
-(function(){
-    emailjs.init("YOUR_PUBLIC_KEY"); // Remplacer par ta clé EmailJS
-  })();
-  
-  document.getElementById("contactForm").addEventListener("submit", function(e){
-    e.preventDefault();
-  
-    emailjs.sendForm("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID", this)
-      .then(() => alert("Message sent successfully!"))
-      .catch((err) => alert("Error: " + JSON.stringify(err)));
+// Initialisation
+(function () {
+  emailjs.init("h9x0PpZ0hmANt51ja"); // ⚠️ Public Key
+})();
+
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("contactForm");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); // 🔥 Empêche le refresh
+
+    emailjs
+      .sendForm("service_ztlo5zf", "template_rktp6qa", form)
+      .then(function () {
+        alert("✅ Message envoyé avec succès !");
+        form.reset();
+      })
+      .catch(function (error) {
+        console.error("Erreur :", error);
+        alert("❌ Erreur : " + JSON.stringify(error));
+      });
   });
-  
+});
